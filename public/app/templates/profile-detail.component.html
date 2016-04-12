@@ -1,0 +1,9 @@
+<div *ngIf="profile">
+    <p><strong>Name:</strong> {{ profile.name }}</p>
+    <p><strong>Age: </strong>{{ profile.age }}</p>
+    <p><strong>Country: </strong>{{ profile.country }}</p>
+    <p><strong>City: </strong>{{ profile.city }}</p>
+    <p><strong>E-mail: </strong>{{ profile.email}} </p>
+</div>
+
+<a (click)="onBack()">Go back</a>

@@ -1,0 +1,13 @@
+<h2>Profile list</h2>
+<table class="table table-hover">
+    <tr>
+        <th>Username</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    <tr *ngFor="#profile of profiles">
+        <td (click)="gotoDetail(profile)">{{ profile.name }}</td> 
+        <td><button (click)="delete(profile)">Delete</button></td> 
+        <td><button (click)="edit(profile)">Edit</button></td>
+    </tr>
+</table>
