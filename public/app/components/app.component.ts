@@ -47,5 +47,5 @@ import {ProfileAddComponent} from './profile-add.component';
 ])
 
 export class AppComponent {
-    title = "Manage profiles";
+    title = "Manage Incidents";
 }

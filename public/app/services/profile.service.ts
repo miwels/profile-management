@@ -8,10 +8,10 @@ import {Profile} from '../components/profile';
 @Injectable()
 export class ProfileService {
 
-    private _profilesUrl      = '/api/profile/get';
-    private _messageUrl       = '/api/message/post';
-    private _saveProfileUrl   = '/api/profile/post';
-    private _deleteProfileUrl = '/api/profile/delete';
+    private _profilesUrl: string      = '/api/profile/get';
+    private _messageUrl: string       = '/api/message/post';
+    private _saveProfileUrl: string   = '/api/profile/post';
+    private _deleteProfileUrl: string = '/api/profile/delete';
 
     constructor(private _http: Http) {
     }
@@ -23,7 +23,7 @@ export class ProfileService {
     getProfiles() {
         return this._http.get(this._profilesUrl)
                         .map(res => res.json())
-                        .do(data => console.log('All: ' + JSON.stringify(data)))
+                        // .do(data => console.log('All: ' + JSON.stringify(data)))
                         .catch(this.handleError);
     }
 
@@ -31,7 +31,7 @@ export class ProfileService {
     getProfile(username: string) {
         return this._http.get(this._profilesUrl + '/' + username)
                          .map(res => res.json())
-                         .do(data => console.log('Profile detail: ' + JSON.stringify(data)))
+                         // .do(data => console.log('Profile detail: ' + JSON.stringify(data)))
                          .catch(this.handleError);
     }
 

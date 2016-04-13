@@ -32,7 +32,7 @@ System.register(['angular2/core', 'angular2/router', './profile-list.component',
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.title = "Manage profiles";
+                    this.title = "Manage Incidents";
                 }
                 AppComponent = __decorate([
                     core_1.Component({

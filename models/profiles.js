@@ -50,7 +50,8 @@ exports.insert = function(req, res, next) {
                     name: req.body.name,
                     username: req.body.username,
                     age: req.body.age,
-                    email: req.body.email
+                    email: req.body.email,
+                    country: req.body.country
                 };
                 
                 db.collection('profiles').insertOne(data, function(err, data) {
@@ -82,7 +83,8 @@ exports.edit = function(req, res, next) {
             $set: {
                 name:   req.body.name,
                 age:    req.body.age,
-                email:  req.body.email
+                email:  req.body.email,
+                country: req.body.country
             }
         };
         

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './profile', '../services/profile.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './profile', '../services/profile.service', '../services/country.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './profile', '../services/p
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, profile_1, profile_service_1;
+    var core_1, router_1, profile_1, profile_service_1, country_service_1;
     var ProfileAddComponent;
     return {
         setters:[
@@ -25,24 +25,32 @@ System.register(['angular2/core', 'angular2/router', './profile', '../services/p
             },
             function (profile_service_1_1) {
                 profile_service_1 = profile_service_1_1;
+            },
+            function (country_service_1_1) {
+                country_service_1 = country_service_1_1;
             }],
         execute: function() {
             ProfileAddComponent = (function () {
                 // -- start constructor
-                function ProfileAddComponent(_profileService, _routeParams) {
+                function ProfileAddComponent(_profileService, _countryService, _routeParams) {
                     var _this = this;
                     this._profileService = _profileService;
+                    this._countryService = _countryService;
                     this._routeParams = _routeParams;
                     // Initialize our Profile model with blank values so that nothing is displayed in the form
-                    // This also prevents our component to throw an error due the fact that profile.name, profile.age, etc. 
+                    // This also prevents our component to throw an error due the fact that profile.name, profile.age, etc.
                     // are not defined if the object is empty
-                    this.profile = new profile_1.Profile('', '', 0, '');
+                    this.profile = new profile_1.Profile('', '', 0, '', '');
                     this.submitted = false;
                     this.submittedMessage = false;
                     this.edit = false;
+                    this.countries = [];
+                    // Pull the list of countries for each user:
+                    this._countryService.getCountries()
+                        .subscribe(function (countries) { return _this.countries = countries; }, function (error) { return _this.errorMessage = error; });
                     // This bit is a bit esotheric. This component accepts an optional parameter :username
                     // If we don't have this parameter we initialize our model with blank values (first condition)
-                    // If there is a :username parameter (else) we call our service and search the user in the database. 
+                    // If there is a :username parameter (else) we call our service and search the user in the database.
                     // If we find the user we populate our form (model) with the appropriate values. The good thing about
                     // doing this is that we don't need to create a new instance of the Profile class, Angular will
                     // populate all fields of our model for us.
@@ -69,7 +77,7 @@ System.register(['angular2/core', 'angular2/router', './profile', '../services/p
                     // this.submitted = true;
                 };
                 // Saves a profile in the database. We return an object with the following structure:
-                // response = { 
+                // response = {
                 //    status: "OK|ERROR",
                 //    message: "Some message"
                 // }
@@ -80,7 +88,7 @@ System.register(['angular2/core', 'angular2/router', './profile', '../services/p
                 };
                 // This function edits a profile. The behaviour is pretty much the same of the saveProfile() method but
                 // we are performing a PUT instead.
-                // 
+                //
                 // NOTE: Keep in mind that we user the username to search in the database so this field
                 // Can't be edited!!!
                 ProfileAddComponent.prototype.editProfile = function (profile) {
@@ -108,9 +116,9 @@ System.register(['angular2/core', 'angular2/router', './profile', '../services/p
                     core_1.Component({
                         selector: 'profile-add',
                         templateUrl: 'app/templates/profile-add.component.html',
-                        providers: [profile_service_1.ProfileService]
+                        providers: [profile_service_1.ProfileService, country_service_1.CountryService]
                     }), 
-                    __metadata('design:paramtypes', [profile_service_1.ProfileService, router_1.RouteParams])
+                    __metadata('design:paramtypes', [profile_service_1.ProfileService, country_service_1.CountryService, router_1.RouteParams])
                 ], ProfileAddComponent);
                 return ProfileAddComponent;
             }());

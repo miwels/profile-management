@@ -40,14 +40,12 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx', 'rxjs/Observable']
                 ProfileService.prototype.getProfiles = function () {
                     return this._http.get(this._profilesUrl)
                         .map(function (res) { return res.json(); })
-                        .do(function (data) { return console.log('All: ' + JSON.stringify(data)); })
                         .catch(this.handleError);
                 };
                 // Get one single profile. Useful if we need to populate the information of a model
                 ProfileService.prototype.getProfile = function (username) {
                     return this._http.get(this._profilesUrl + '/' + username)
                         .map(function (res) { return res.json(); })
-                        .do(function (data) { return console.log('Profile detail: ' + JSON.stringify(data)); })
                         .catch(this.handleError);
                 };
                 // Save a new profile. We perform a POST method to do this.

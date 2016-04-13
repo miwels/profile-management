@@ -15,6 +15,8 @@ System.register(['angular2/platform/browser', './components/app.component', 'ang
                 http_1 = http_1_1;
             }],
         execute: function() {
+            // Uncomment to enable production mode
+            // enableProdMode();
             browser_1.bootstrap(app_component_1.AppComponent, [http_1.HTTP_PROVIDERS]);
         }
     }
