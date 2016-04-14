@@ -32,6 +32,7 @@ router.get('/profiles', checkCredentials);
 router.get('/profile/:username', checkCredentials);
 router.get('/profile-add', checkCredentials);
 router.get('/profile-add/:username', checkCredentials);
+router.get('/picture-add/:username', checkCredentials);
 
 // Match all /profile* routes. We have to do this because Angular 2 uses HTML5
 // routes. This means that if a route is defined in Angular but not in our express

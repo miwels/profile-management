@@ -4,6 +4,7 @@ import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router'
 import {ProfileListComponent} from './profile-list.component';
 import {ProfileDetailComponent} from './profile-detail.component'
 import {ProfileAddComponent} from './profile-add.component';
+import {PictureAddComponent} from './picture-add.component';
 
 @Component({
     selector: 'my-app',
@@ -43,6 +44,11 @@ import {ProfileAddComponent} from './profile-add.component';
         path: '/profile/:username',
         name: 'ProfileDetail',
         component: ProfileDetailComponent
+    },
+    {
+        path: '/picture-add/:username',
+        name: 'ProfileAddPicture',
+        component: PictureAddComponent
     }
 ])
 

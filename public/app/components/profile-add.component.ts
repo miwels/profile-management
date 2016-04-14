@@ -1,5 +1,5 @@
-import {Component, Input, Injectable} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
+import {Component, Injectable} from 'angular2/core';
+import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Profile} from './profile';
 import {ProfileService} from '../services/profile.service';
@@ -10,7 +10,8 @@ import {CountryService} from '../services/country.service';
 @Component({
     selector: 'profile-add',
     templateUrl: 'app/templates/profile-add.component.html',
-    providers: [ProfileService, CountryService]
+    providers: [ProfileService, CountryService],
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class ProfileAddComponent {

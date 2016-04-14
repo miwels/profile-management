@@ -116,7 +116,8 @@ System.register(['angular2/core', 'angular2/router', './profile', '../services/p
                     core_1.Component({
                         selector: 'profile-add',
                         templateUrl: 'app/templates/profile-add.component.html',
-                        providers: [profile_service_1.ProfileService, country_service_1.CountryService]
+                        providers: [profile_service_1.ProfileService, country_service_1.CountryService],
+                        directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [profile_service_1.ProfileService, country_service_1.CountryService, router_1.RouteParams])
                 ], ProfileAddComponent);

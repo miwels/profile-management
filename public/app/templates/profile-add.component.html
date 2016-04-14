@@ -1,4 +1,4 @@
-<form>
+<form enctype="multipart/form-data">
     <div [hidden]="submitted" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label>Name: </label>
@@ -26,6 +26,9 @@
                     [(ngModel)]="profile.country">
             <option *ngFor="#country of countries" [value]="country.name">{{ country.name }}</option>
             </select>
+        </div>
+        <div class="form-group" *ngIf="edit">
+            <a [routerLink]="['ProfileAddPicture', {username: profile.username}]">Add picture</a>
         </div>
 
         <button *ngIf="!edit" type="button" class="btn btn-default" (click)="saveProfile()">Save</button>

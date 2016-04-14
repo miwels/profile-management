@@ -1,0 +1,18 @@
+<!--
+    The first thing that happens in our UI is the user picks a file and the 
+    fileChangeEvent is triggered.  The event includes a lot of information that 
+    is useless to us.  We only want the File array which we store in a 
+    filesToUpload scope.
+    When a file is chosen from the picker, the fileChangeEvent function is called 
+    and an object is passed.  We’re looking for object.target.files
+-->
+
+<form enctype="multipart/form-data" accept="image/*" [hidden]="fileUploaded">
+    <input type="file" (change)="fileChangeEvent($event)" placeholder="Upload file..." name="uploads[]" />
+    <button type="button" (click)="upload()">Upload</button>
+</form>
+
+<div [hidden]="!fileUploaded">
+    <p class="bg-success">File uploaded successfully!</p>
+    <a [routerLink]="['Profiles']" class="btn btn-primary">Go back</a>
+</div>

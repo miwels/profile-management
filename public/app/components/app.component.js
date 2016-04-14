@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './profile-list.component', './profile-detail.component', './profile-add.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './profile-list.component', './profile-detail.component', './profile-add.component', './picture-add.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './profile-list.component',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, profile_list_component_1, profile_detail_component_1, profile_add_component_1;
+    var core_1, router_1, profile_list_component_1, profile_detail_component_1, profile_add_component_1, picture_add_component_1;
     var AppComponent;
     return {
         setters:[
@@ -28,6 +28,9 @@ System.register(['angular2/core', 'angular2/router', './profile-list.component',
             },
             function (profile_add_component_1_1) {
                 profile_add_component_1 = profile_add_component_1_1;
+            },
+            function (picture_add_component_1_1) {
+                picture_add_component_1 = picture_add_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -63,6 +66,11 @@ System.register(['angular2/core', 'angular2/router', './profile-list.component',
                             path: '/profile/:username',
                             name: 'ProfileDetail',
                             component: profile_detail_component_1.ProfileDetailComponent
+                        },
+                        {
+                            path: '/picture-add/:username',
+                            name: 'ProfileAddPicture',
+                            component: picture_add_component_1.PictureAddComponent
                         }
                     ]), 
                     __metadata('design:paramtypes', [])

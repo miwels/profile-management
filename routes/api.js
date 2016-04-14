@@ -1,17 +1,34 @@
 var express = require('express');
 var router = express.Router();
 
-// multipart/form-data variables
+// ----- start multer setup
 var multer = require('multer');
-var fs = require('fs');
-var DIR = '../uploads/';
-var upload = multer({dest: DIR});
+var DIR = './uploads/';
+
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, DIR);
+    },
+    // rename file with a random sequence of numbers and keep the extension
+    filename: function(req, file, cb) {
+        var extension = '.undefined';
+        switch(file.mimetype) {
+            case 'image/jpeg':
+                extension = '.jpg';
+                break;
+        }
+
+        cb(null, Date.now() + extension);
+    }
+});
+var upload = multer({storage: storage, inMemory: false});
+// ----- end multer setup
 
 var sessionController = require('../controllers/sessionController');
 
 var profiles = require('../models/profiles');
 var countries = require('../models/countries');
-var uploads = require('../models/uploads')
+var uploads = require('../models/uploads');
 
 // Authentication middleware. The '*' means that this middleware will be applied
 // for any route after the /api/... path
@@ -35,23 +52,13 @@ router.put('/profile/post', profiles.edit);
 // delete profile
 router.delete('/profile/delete/:username', profiles.delete);
 
-// multer allows us to process multipar/form-data forms so that we can upload files using
-// inputs of type="file"
-// https://github.com/expressjs/multer
-router.use(multer({
-  dest: DIR,
-  rename: function (fieldname, filename) {
-    return filename + Date.now();
-  },
-  onFileUploadStart: function (file) {
-    console.log(file.originalname + ' is starting ...');
-  },
-  onFileUploadComplete: function (file) {
-    console.log(file.fieldname + ' uploaded to  ' + file.path);
-  }
-}), uploads.send);
-
-// upload picture:
-router.post('/upload', uploads.send);
+// NOTE: the name specified in multer.single(<NAME>) or multer.array(<NAME>) must be the same
+// we have in our <input name=<NAME>>. Keep in mind that if it's an array we have to specify the
+// name in array format too:
+// <input name="files[]"> <-> multer.array('files[]')
+// upload.array('uploads[]', 12)
+router.post('/upload', upload.array('uploads[]', 12), function(req, res){
+    res.send(req.files); 
+});
 
 module.exports = router;
